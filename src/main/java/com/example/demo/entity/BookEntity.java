@@ -1,32 +1,30 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import java.sql.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import com.example.demo.dto.Book;
 
 @Entity
 @Table(name = "books")
-public class Book {
+public class BookEntity {
 	private long isbn;
 	private String bookName;
 	private String authorName;
 	private String bookType;
 	private Date releaseDate;
 
-	public Book() {
+	public BookEntity() {
 	}
 
-	public Book(long IDBN, String bookName, String authorName, String booktype, Date releasedate) {
+	public BookEntity(String bookName, String authorName, String booktype, Date releasedate) {
 		this.bookName = bookName;
 		this.authorName = authorName;
 		this.bookType = booktype;
 		this.releaseDate = releasedate;
 	}
-	
+
 	@Id
 	public long getIsbn() {
 		return isbn;
@@ -68,7 +66,15 @@ public class Book {
 		this.releaseDate = releaseDate;
 	}
 
-	
-	
+	public Book toDto() {
+		Book book = new Book();
+		book.setAuthorName(this.authorName);
+		book.setBookName(this.bookName);
+		book.setBookType(this.bookType);
+		book.setIsbn(this.isbn);
+		book.setReleaseDate(this.releaseDate);
+		return book;
+
+	}
 
 }

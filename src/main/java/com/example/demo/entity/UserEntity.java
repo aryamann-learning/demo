@@ -1,23 +1,23 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import com.example.demo.dto.User;
 
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
 	private int id;
     private String firstName;
     private String lastName;
 
-    public User() {
+    public UserEntity() {
     }
-
-    public User(int id, String firstName, String lastName) {
+    public UserEntity(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,6 +48,13 @@ public class User {
 	public void setId(Integer id2) {
 		this.id=id2;
 		
+	}
+
+	public  User todto(){
+		User user = new User();
+		user.setFirstName(this.firstName);
+		user.setLastName(this.lastName);
+		return user;
 	}
 
 }
